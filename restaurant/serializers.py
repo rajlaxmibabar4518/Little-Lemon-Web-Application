@@ -1,5 +1,3 @@
-from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
 from rest_framework import serializers
 
 from .models import Booking, Menu
@@ -30,22 +28,3 @@ class BookingSerializer(serializers.ModelSerializer):
         if clash.exists():
             raise serializers.ValidationError("That time slot is already booked for this date.")
         return attrs
-
-
-class RegistrationSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, style={"input_type": "password"})
-
-    class Meta:
-        model = User
-        fields = ["id", "username", "email", "password"]
-
-    def validate_password(self, value):
-        validate_password(value)
-        return value
-
-    def create(self, validated_data):
-        return User.objects.create_user(
-            username=validated_data["username"],
-            email=validated_data.get("email", ""),
-            password=validated_data["password"],
-        )

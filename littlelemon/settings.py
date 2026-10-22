@@ -17,9 +17,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "restaurant",
     "rest_framework",
     "rest_framework.authtoken",
-    "restaurant",
+    "djoser",
 ]
 
 MIDDLEWARE = [
@@ -37,7 +38,7 @@ ROOT_URLCONF = "littlelemon.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -100,4 +101,8 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticatedOrReadOnly",
     ],
+}
+
+DJOSER = {
+    "USER_ID_FIELD": "username",
 }

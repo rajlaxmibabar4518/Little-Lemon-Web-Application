@@ -1,66 +1,48 @@
-from django.contrib.auth.models import User
 from django.shortcuts import render
-from rest_framework import generics, permissions, viewsets
-from rest_framework.authtoken.models import Token
+from rest_framework import permissions, viewsets
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .models import Booking, Menu
-from .serializers import BookingSerializer, MenuSerializer, RegistrationSerializer
+from .serializers import BookingSerializer, MenuSerializer
 
 
 # ---------------------------------------------------------------------------
 # Static HTML pages served by Django
 # ---------------------------------------------------------------------------
 def home(request):
-    return render(request, "restaurant/index.html")
+    return render(request, "index.html")
 
 
 def about(request):
-    return render(request, "restaurant/about.html")
+    return render(request, "about.html")
 
 
 def menu_page(request):
-    return render(request, "restaurant/menu.html", {"menu": Menu.objects.all()})
+    return render(request, "menu.html", {"menu": Menu.objects.all()})
 
 
 def book_page(request):
-    return render(request, "restaurant/book.html")
+    return render(request, "book.html")
 
 
 # ---------------------------------------------------------------------------
-# REST API
+# REST API viewsets
 # ---------------------------------------------------------------------------
-class MenuItemsView(generics.ListCreateAPIView):
+class MenuItemsViewSet(viewsets.ModelViewSet):
+    """Menu CRUD. Anyone can read; creating/changing needs a token."""
+
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    search_fields = ["title"]
-
-
-class SingleMenuItemView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Menu.objects.all()
-    serializer_class = MenuSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class BookingViewSet(viewsets.ModelViewSet):
+    """Booking CRUD. Requires authentication."""
+
     queryset = Booking.objects.all()
     serializer_class = BookingSerializer
     permission_classes = [permissions.IsAuthenticated]
-
-
-class RegistrationView(generics.CreateAPIView):
-    """Create a user account and return an auth token."""
-
-    queryset = User.objects.all()
-    serializer_class = RegistrationSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def create(self, request, *args, **kwargs):
-        response = super().create(request, *args, **kwargs)
-        user = User.objects.get(pk=response.data["id"])
-        token, _ = Token.objects.get_or_create(user=user)
-        response.data["token"] = token.key
-        return response
 
 
 class MeView(APIView):
@@ -69,6 +51,4 @@ class MeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get(self, request):
-        return Response(
-            {"username": request.user.username, "email": request.user.email}
-        )
+        return Response({"username": request.user.username, "email": request.user.email})

@@ -1,0 +1,215 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "resources": [
+    {
+      "_id": "wrk_ll",
+      "_type": "workspace",
+      "name": "Little Lemon API"
+    },
+    {
+      "_id": "req_0",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Register",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/registration/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"peer\",\n  \"email\": \"peer@example.com\",\n  \"password\": \"StrongPass!234\"\n}"
+      }
+    },
+    {
+      "_id": "req_1",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Get token",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/token/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"username\": \"peer\",\n  \"password\": \"StrongPass!234\"\n}"
+      }
+    },
+    {
+      "_id": "req_2",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Me",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/me/",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {}
+    },
+    {
+      "_id": "req_3",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "List menu",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/menu/",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "_id": "req_4",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Create menu item",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/menu/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Greek Salad\",\n  \"price\": \"12.50\",\n  \"inventory\": 20\n}"
+      }
+    },
+    {
+      "_id": "req_5",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Get menu item",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/menu/1/",
+      "headers": [],
+      "body": {}
+    },
+    {
+      "_id": "req_6",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Update menu item",
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/api/menu/1/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"title\": \"Greek Salad\",\n  \"price\": \"13.00\",\n  \"inventory\": 18\n}"
+      }
+    },
+    {
+      "_id": "req_7",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Delete menu item",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/api/menu/1/",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {}
+    },
+    {
+      "_id": "req_8",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "List bookings",
+      "method": "GET",
+      "url": "http://127.0.0.1:8000/api/bookings/",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {}
+    },
+    {
+      "_id": "req_9",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Create booking",
+      "method": "POST",
+      "url": "http://127.0.0.1:8000/api/bookings/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"first_name\": \"Sam\",\n  \"reservation_date\": \"2026-12-01\",\n  \"reservation_slot\": 19\n}"
+      }
+    },
+    {
+      "_id": "req_10",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Update booking",
+      "method": "PUT",
+      "url": "http://127.0.0.1:8000/api/bookings/1/",
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"first_name\": \"Sam\",\n  \"reservation_date\": \"2026-12-01\",\n  \"reservation_slot\": 20\n}"
+      }
+    },
+    {
+      "_id": "req_11",
+      "_type": "request",
+      "parentId": "wrk_ll",
+      "name": "Delete booking",
+      "method": "DELETE",
+      "url": "http://127.0.0.1:8000/api/bookings/1/",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "Token PASTE_TOKEN_HERE"
+        }
+      ],
+      "body": {}
+    }
+  ]
+}

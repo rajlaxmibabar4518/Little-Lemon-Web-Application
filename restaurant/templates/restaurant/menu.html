@@ -1,0 +1,17 @@
+{% extends "restaurant/base.html" %}
+{% block title %}Menu - Little Lemon{% endblock %}
+{% block content %}
+<h2>Our Menu</h2>
+{% if menu %}
+<table>
+  <thead><tr><th>Dish</th><th>Price</th><th>In stock</th></tr></thead>
+  <tbody>
+  {% for item in menu %}
+    <tr><td>{{ item.title }}</td><td>${{ item.price }}</td><td>{{ item.inventory }}</td></tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>The menu is being updated. Please check back soon.</p>
+{% endif %}
+{% endblock %}

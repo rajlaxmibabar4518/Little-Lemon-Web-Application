@@ -1,0 +1,8 @@
+{% extends "restaurant/base.html" %}
+{% block title %}Book a Table - Little Lemon{% endblock %}
+{% block content %}
+<h2>Book a Table</h2>
+<p>Table reservations are handled through our API. Use an authenticated client (such as Insomnia) to
+<code>POST</code> to <code>/api/bookings/</code> with your <code>first_name</code>,
+<code>reservation_date</code> and <code>reservation_slot</code>.</p>
+{% endblock %}
